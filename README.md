@@ -11,14 +11,16 @@ A modern, professional content management system built with Next.js that seamles
 
 ### Step 1: Clone & Install
 
-\`\`\`
+## 🔧 Installation
+
+```bash
 # Clone the repository
-git clone (https://github.com/mahmudul-noman/github-tf.git)
+git clone https://github.com/mahmudul-noman/github-tf.git
 cd github-cms
 
 # Install dependencies
 npm install
-\`\`\`
+```
 
 ### Step 2: GitHub Token Setup
 
