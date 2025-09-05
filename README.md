@@ -41,7 +41,7 @@ npm install
 
 Create `.env.local` file in your project root:
 
-\`\`\`bash
+```bash
 # Required: GitHub API Configuration
 GITHUB_TOKEN=ghp_your_personal_access_token_here
 GITHUB_OWNER=your_github_username
@@ -50,27 +50,27 @@ GITHUB_REPO=your_repository_name
 # Required: Frontend Configuration
 NEXT_PUBLIC_GITHUB_OWNER=your_github_username
 NEXT_PUBLIC_GITHUB_REPO=your_repository_name
-\`\`\`
+```
 
 **Example:**
-\`\`\`bash
+```bash
 GITHUB_TOKEN=ghp_1234567890abcdef1234567890abcdef12345678
 GITHUB_OWNER=johndoe
 GITHUB_REPO=my-blog
 
 NEXT_PUBLIC_GITHUB_OWNER=johndoe
 NEXT_PUBLIC_GITHUB_REPO=my-blog
-\`\`\`
+```
 
 ### Step 4: Development
 
-\`\`\`bash
+```bash
 # Start development server
 npm run dev
 
 # Open browser
 # Navigate to http://localhost:3000
-\`\`\`
+```
 
 ### Step 5: Production Deployment
 
@@ -87,13 +87,13 @@ npm run dev
 4. Deploy
 
 #### Option C: Manual Build
-\`\`\`bash
+```bash
 # Build for production
 npm run build
 
 # Start production server
 npm start
-\`\`\`
+```
 
 ## 🎯 Quick Usage
 
@@ -106,14 +106,14 @@ npm start
 
 After publishing, your GitHub repository will contain:
 
-\`\`\`
+```bash
 your-repo/
 ├── posts/
 │   ├── 2024-01-15-my-first-post.md
 │   ├── 2024-01-20-another-post.md
 │   └── ...
 └── README.md
-\`\`\`
+```
 
 ## 🛠 Technical Stack
 
