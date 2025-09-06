@@ -814,17 +814,17 @@ export default function Dashboard() {
           <div className="flex items-center gap-2">
             {drafts.length > 0 && (
               <>
-                <Button variant="outline" onClick={handlePublishAll} className="bg-green-50 hover:bg-green-100 border-green-300 text-green-700">
+                <Button variant="outline" onClick={handlePublishAll} className="bg-green-50 hover:bg-green-500 border-green-300 text-green-700 cursor-pointer">
                   <Upload className="h-4 w-4 mr-2" />
                   Publish All ({drafts.length})
                 </Button>
-                <Button variant="destructive" onClick={handleDeleteAllDrafts} className="bg-red-50 hover:bg-red-100 border-red-300 text-red-700">
+                <Button variant="destructive" onClick={handleDeleteAllDrafts} className="bg-red-50 hover:bg-red-500 border-red-300 text-white-50 cursor-pointer">
                   <Trash2 className="h-4 w-4 mr-2" />
                   Delete All
                 </Button>
               </>
             )}
-            <Button onClick={handleCreateDraft} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white">
+            <Button onClick={handleCreateDraft} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white cursor-pointer">
               <Plus className="h-4 w-4" />
               New Draft
             </Button>
@@ -896,7 +896,7 @@ export default function Dashboard() {
                         : "No drafts yet. Create your first draft to get started."}
                     </p>
                     {!searchQuery && (
-                      <Button onClick={handleCreateDraft} className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
+                      <Button onClick={handleCreateDraft} className="mt-4 bg-blue-600 hover:bg-blue-700 text-white cursor-pointer">
                         Create Draft
                       </Button>
                     )}
@@ -1003,24 +1003,24 @@ function DraftCard({
         <p className="text-sm text-blue-800 line-clamp-2 mb-4">{draft.content.substring(0, 120)}...</p>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" variant="default" className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Button asChild size="sm" variant="default" className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer">
             <Link href={`/editor/${draft.id}`}>
               <Edit className="h-4 w-4 mr-1" />
               Edit
             </Link>
           </Button>
 
-          <Button size="sm" variant="outline" onClick={onPublish} className="border-green-300 text-green-700 hover:bg-green-50">
+          <Button size="sm" variant="outline" onClick={onPublish} className="border-green-300 text-green-700 hover:bg-green-500 cursor-pointer">
             <Upload className="h-4 w-4 mr-1" />
             Publish
           </Button>
 
-          <Button size="sm" variant="outline" onClick={onDuplicate} className="border-orange-300 text-orange-700 hover:bg-orange-50">
+          <Button size="sm" variant="outline" onClick={onDuplicate} className="border-orange-300 text-orange-700 hover:bg-orange-500 cursor-pointer">
             <Copy className="h-4 w-4 mr-1" />
             Duplicate
           </Button>
 
-          <Button size="sm" variant="outline" onClick={onDelete} className="border-red-300 text-red-700 hover:bg-red-50">
+          <Button size="sm" variant="outline" onClick={onDelete} className="border-red-300 text-red-700 hover:bg-red-500 cursor-pointer">
             <Trash2 className="h-4 w-4 mr-1" />
             Delete
           </Button>
@@ -1049,14 +1049,14 @@ function PostCard({ post }: { post: GitHubFile }) {
 
       <CardContent className="pt-0">
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-50">
+          <Button asChild size="sm" variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-500">
             <a href={post.html_url} target="_blank" rel="noopener noreferrer">
               <GitBranch className="h-4 w-4 mr-1" />
               View on GitHub
             </a>
           </Button>
 
-          <Button asChild size="sm" variant="outline" className="border-orange-300 text-orange-700 hover:bg-orange-50">
+          <Button asChild size="sm" variant="outline" className="border-orange-300 text-orange-700 hover:bg-orange-500">
             <Link href={`/preview/${encodeURIComponent(post.path)}`}>
               <FileText className="h-4 w-4 mr-1" />
               Preview

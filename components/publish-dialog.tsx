@@ -237,10 +237,10 @@ export function PublishDialog({ draft, open, onOpenChange, onPublished }: Publis
         )}
 
         <DialogFooter>
-          <Button variant="outline" onClick={handleClose} disabled={isPublishing}>
+          <Button variant="outline" onClick={handleClose} disabled={isPublishing} className="cursor-pointer">
             Cancel
           </Button>
-          <Button onClick={handlePublish} disabled={isPublishing || success}>
+          <Button onClick={handlePublish} disabled={isPublishing || success} className="cursor-pointer">
             {isPublishing ? "Publishing..." : "Publish"}
           </Button>
         </DialogFooter>

@@ -134,7 +134,7 @@ export function PublishAllDialog({ drafts, open, onOpenChange, onPublished }: Pu
                     {results.results.map((result: any, index: number) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <CheckCircle className="h-3 w-3 text-green-500" />
-                        <span className="truncate">{result.filename}</span>
+                        <span className="truncate text-wrap">{result.filename}</span>
                       </div>
                     ))}
                   </div>
@@ -166,11 +166,11 @@ export function PublishAllDialog({ drafts, open, onOpenChange, onPublished }: Pu
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={handleClose} disabled={isPublishing}>
+          <Button variant="outline" onClick={handleClose} disabled={isPublishing} className="cursor-pointer">
             {results ? "Close" : "Cancel"}
           </Button>
           {!results && (
-            <Button onClick={handlePublishAll} disabled={isPublishing || drafts.length === 0}>
+            <Button onClick={handlePublishAll} disabled={isPublishing || drafts.length === 0} className="cursor-pointer">
               {isPublishing ? "Publishing..." : "Publish All"}
             </Button>
           )}
