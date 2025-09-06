@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -29,12 +29,12 @@ export default function PostPreviewPage() {
       if (response.ok) {
         const { content } = await response.json()
         const parsed = parseMarkdown(content)
-        setPost(parsed)
+        setPost({ title: parsed.frontmatter.title || "Untitled", content: parsed.content })
       } else {
         setError("Failed to fetch post content")
       }
-    } catch (error) {
-      console.error("Error fetching post:", error)
+    } catch (err) {
+      console.error("Error fetching post:", err)
       setError("Error loading post")
     } finally {
       setIsLoading(false)
@@ -108,7 +108,7 @@ export default function PostPreviewPage() {
         {/* Content */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl font-bold text-balance">{post.title}</CardTitle>
+            <CardTitle className="text-3xl font-bold">{post.title}</CardTitle>
           </CardHeader>
           <CardContent>
             <MarkdownRenderer content={post.content} showStats />

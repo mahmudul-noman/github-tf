@@ -7,33 +7,52 @@ export async function POST(request: NextRequest) {
     const { title, content, filename, frontmatter } = await request.json()
 
     if (!title || !content || !filename) {
-      return NextResponse.json({ error: "Title, content, and filename are required" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Title, content, and filename are required" },
+        { status: 400 }
+      )
     }
 
     // Ensure filename ends with .md
-    const markdownFilename = filename.endsWith(".md") ? filename : `${filename}.md`
+    const markdownFilename = filename.endsWith(".md")
+      ? filename
+      : `${filename}.md`
 
-    // Create markdown file with frontmatter
+    // Create markdown content with frontmatter
     const markdownContent = createMarkdownFile(title, content, frontmatter)
 
     const github = createGitHubClient()
 
-    // Check if file already exists
-    let existingFile = null
+    // Check if file already exists via GitHub API directly
+    let existingFile: { sha: string } | null = null
     try {
-      const response = await fetch(`/api/github/content?path=${encodeURIComponent(markdownFilename)}`)
-      if (response.ok) {
-        existingFile = await response.json()
+      const res = await fetch(
+        `https://api.github.com/repos/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}/contents/${encodeURIComponent(markdownFilename)}`,
+        {
+          headers: {
+            Authorization: `token ${process.env.GITHUB_TOKEN}`,
+          },
+        }
+      )
+
+      if (res.ok) {
+        existingFile = await res.json()
       }
-    } catch (error) {
-      // File doesn't exist, which is fine for new posts
+    } catch (err) {
+      // File doesn’t exist — that’s fine
     }
 
-    // Commit message
-    const commitMessage = existingFile ? `Update post: ${title}` : `Add new post: ${title}`
+    const commitMessage = existingFile
+      ? `Update post: ${title}`
+      : `Add new post: ${title}`
 
     // Create or update the file
-    const result = await github.createOrUpdateFile(markdownFilename, markdownContent, commitMessage, existingFile?.sha)
+    const result = await github.createOrUpdateFile(
+      markdownFilename,
+      markdownContent,
+      commitMessage,
+      existingFile?.sha
+    )
 
     return NextResponse.json({
       success: true,
@@ -43,6 +62,9 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error("Error publishing post:", error)
-    return NextResponse.json({ error: "Failed to publish post" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Failed to publish post" },
+      { status: 500 }
+    )
   }
 }

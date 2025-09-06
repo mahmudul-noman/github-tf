@@ -99,64 +99,7 @@ export function PublishDialog({ draft, open, onOpenChange, onPublished }: Publis
   }
 
 
-  // const handlePublish = async () => {
-  //   setIsPublishing(true)
-  //   setError(null)
-  
-  //   try {
-  //     let frontmatter: Record<string, any> = {
-  //       slug: filename,
-  //       draft: false,
-  //     }
-  
-  //     if (addTimestamp) {
-  //       frontmatter.publishedAt = new Date().toISOString()
-  //     }
-  
-  //     if (customFrontmatter.trim()) {
-  //       try {
-  //         const customData = JSON.parse(customFrontmatter)
-  //         frontmatter = { ...frontmatter, ...customData }
-  //       } catch (error) {
-  //         setError("Invalid JSON in custom frontmatter")
-  //         setIsPublishing(false)
-  //         return
-  //       }
-  //     }
-  
-  //     const response = await fetch("/api/publish", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         title: draft.title,
-  //         content: draft.content,
-  //         filename,
-  //         frontmatter,
-  //       }),
-  //     })
-  
-  //     const result = await response.json()
-  
-  //     if (response.ok) {
-  //       setSuccess(true)
-  //       // ✅ Pass the draft ID to the dashboard
-  //       onPublished?.([draft.id])
-  //       setTimeout(() => {
-  //         onOpenChange(false)
-  //         setSuccess(false)
-  //       }, 2000)
-  //     } else {
-  //       setError(result.error || "Failed to publish post")
-  //     }
-  //   } catch (error) {
-  //     console.error("Error publishing:", error)
-  //     setError("Network error occurred while publishing")
-  //   } finally {
-  //     setIsPublishing(false)
-  //   }
-  // }
+
   
 
   const handleClose = () => {

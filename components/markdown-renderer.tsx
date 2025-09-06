@@ -16,14 +16,19 @@ export function MarkdownRenderer({ content, showStats = false, className = "" }:
   const [readingTime, setReadingTime] = useState(0)
 
   useEffect(() => {
-    const html = renderMarkdown(content)
-    setRenderedHtml(html)
-
-    if (showStats) {
-      setWordCount(getMarkdownWordCount(content))
-      setReadingTime(getMarkdownReadingTime(content))
+    async function render() {
+      const html = await renderMarkdown(content) // await if renderMarkdown returns Promise<string>
+      setRenderedHtml(html)
+  
+      if (showStats) {
+        setWordCount(getMarkdownWordCount(content))
+        setReadingTime(getMarkdownReadingTime(content))
+      }
     }
+  
+    render()
   }, [content, showStats])
+  
 
   return (
     <div className={`markdown-renderer ${className}`}>
@@ -47,3 +52,4 @@ export function MarkdownRenderer({ content, showStats = false, className = "" }:
     </div>
   )
 }
+
