@@ -201,22 +201,22 @@ npm start
 <table>
 <tr>
 <td align="center" width="25%">
-<img src="https://via.placeholder.com/80/3b82f6/ffffff?text=1" style="border-radius: 50%"/>
+📝
 <br><strong>Create Draft</strong>
 <br>Click "New Draft" on dashboard
 </td>
 <td align="center" width="25%">
-<img src="https://via.placeholder.com/80/10b981/ffffff?text=2" style="border-radius: 50%"/>
+✍️
 <br><strong>Write Content</strong>
 <br>Use markdown editor with live preview
 </td>
 <td align="center" width="25%">
-<img src="https://via.placeholder.com/80/f59e0b/ffffff?text=3" style="border-radius: 50%"/>
+💾
 <br><strong>Auto-Save</strong>
 <br>Drafts save automatically as you type
 </td>
 <td align="center" width="25%">
-<img src="https://via.placeholder.com/80/ef4444/ffffff?text=4" style="border-radius: 50%"/>
+➡️
 <br><strong>Publish</strong>
 <br>Click "Publish" to commit to GitHub repository
 </td>
