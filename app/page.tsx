@@ -125,12 +125,12 @@ export default function Dashboard() {
   // Safe filtering with better error handling
   const filteredPosts = Array.isArray(publishedPosts)
     ? publishedPosts.filter((post) => {
-        if (!post || typeof post.name !== "string") {
-          console.warn("Invalid post object:", post);
-          return false;
-        }
-        return post.name.toLowerCase().includes(searchQuery.toLowerCase());
-      })
+      if (!post || typeof post.name !== "string") {
+        console.warn("Invalid post object:", post);
+        return false;
+      }
+      return post.name.toLowerCase().includes(searchQuery.toLowerCase());
+    })
     : [];
 
   // const handleCreateDraft = () => {
@@ -172,9 +172,16 @@ export default function Dashboard() {
     setPublishAllDialogOpen(true);
   };
 
-  const handlePublished = () => {
+  const handlePublished = (draftId?: string) => {
+    // Refresh published posts
     fetchPublishedPosts();
+
+    // Remove the draft from draft list if draftId is provided
+    if (draftId) {
+      deleteDraft(draftId);
+    }
   };
+
 
   const handleRetryFetchPosts = () => {
     fetchPublishedPosts();
@@ -232,7 +239,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-      
+
         {/* User Manual Modal */}
         {userManualOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -566,8 +573,8 @@ export default function Dashboard() {
               <div className="text-2xl font-bold text-orange-900">
                 {drafts.length > 0
                   ? formatDistanceToNow(new Date(drafts[0].updatedAt), {
-                      addSuffix: true,
-                    })
+                    addSuffix: true,
+                  })
                   : "None"}
               </div>
             </CardContent>
@@ -691,7 +698,7 @@ export default function Dashboard() {
             draft={selectedDraft}
             open={publishDialogOpen}
             onOpenChange={setPublishDialogOpen}
-            onPublished={handlePublished}
+            onPublished={() => handlePublished(selectedDraft?.id)}
           />
         )}
 
