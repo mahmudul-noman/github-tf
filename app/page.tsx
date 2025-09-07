@@ -836,7 +836,7 @@ function PostCard({ post }: { post: GitHubFile }) {
               asChild
               size="sm"
               variant="outline"
-              className="border-blue-300 text-blue-700 hover:bg-blue-50"
+              className="border-blue-300 text-blue-700 hover:bg-blue-500"
             >
               <a href={post.html_url} target="_blank" rel="noopener noreferrer">
                 <GitBranch className="h-4 w-4 mr-1" />
@@ -850,7 +850,7 @@ function PostCard({ post }: { post: GitHubFile }) {
               asChild
               size="sm"
               variant="outline"
-              className="border-orange-300 text-orange-700 hover:bg-orange-50"
+              className="border-orange-300 text-orange-700 hover:bg-orange-500"
             >
               <Link href={`/preview/${encodeURIComponent(post.path)}`}>
                 <FileText className="h-4 w-4 mr-1" />

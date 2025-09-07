@@ -28,10 +28,10 @@ interface PublishDialogProps {
 export function PublishDialog({ draft, open, onOpenChange, onPublished }: PublishDialogProps) {
   const [filename, setFilename] = useState(
     draft.slug ||
-      draft.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, ""),
+    draft.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, ""),
   )
   const [customFrontmatter, setCustomFrontmatter] = useState("")
   const [addTimestamp, setAddTimestamp] = useState(true)
@@ -100,7 +100,7 @@ export function PublishDialog({ draft, open, onOpenChange, onPublished }: Publis
 
 
 
-  
+
 
   const handleClose = () => {
     if (!isPublishing) {
@@ -142,32 +142,6 @@ export function PublishDialog({ draft, open, onOpenChange, onPublished }: Publis
                 />
                 <span className="text-sm text-muted-foreground">.md</span>
               </div>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="timestamp"
-                checked={addTimestamp}
-                // onCheckedChange={setAddTimestamp}
-                onCheckedChange={(checked) => setAddTimestamp(checked === true)}
-                disabled={isPublishing}
-              />
-              <Label htmlFor="timestamp" className="text-sm">
-                Add publish timestamp
-              </Label>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="frontmatter">Custom Frontmatter (JSON)</Label>
-              <Textarea
-                id="frontmatter"
-                value={customFrontmatter}
-                onChange={(e) => setCustomFrontmatter(e.target.value)}
-                placeholder='{"author": "Your Name", "tags": ["blog", "tech"]}'
-                rows={3}
-                disabled={isPublishing}
-              />
-              <p className="text-xs text-muted-foreground">Optional: Add custom metadata as JSON</p>
             </div>
 
             {error && (
