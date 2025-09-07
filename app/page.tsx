@@ -13,6 +13,7 @@ import Link from "next/link"
 import { formatDistanceToNow } from "date-fns"
 import { PublishDialog } from "@/components/publish-dialog"
 import { PublishAllDialog } from "@/components/publish-all-dialog"
+import { useRouter } from "next/navigation"
 
 interface APIResponse {
   files?: GitHubFile[]
@@ -31,6 +32,9 @@ export default function Dashboard() {
   const [publishDialogOpen, setPublishDialogOpen] = useState(false)
   const [publishAllDialogOpen, setPublishAllDialogOpen] = useState(false)
   const [selectedDraft, setSelectedDraft] = useState<Draft | null>(null)
+
+
+  const router = useRouter()
 
   useEffect(() => {
     fetchPublishedPosts()
@@ -95,9 +99,14 @@ export default function Dashboard() {
       })
     : []
 
-  const handleCreateDraft = () => {
+  // const handleCreateDraft = () => {
+  //   const newDraft = createDraft()
+  //   window.location.href = `/editor/${newDraft.id}`
+  // }
+
+    const handleCreateDraft = () => {
     const newDraft = createDraft()
-    window.location.href = `/editor/${newDraft.id}`
+    router.push(`/editor/${newDraft.id}`) // client-side navigation
   }
 
   const handleDeleteDraft = (id: string) => {
