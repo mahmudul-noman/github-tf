@@ -66,14 +66,14 @@ export function MarkdownEditor({
     [value, onChange],
   )
 
-  const toolbarButtons = [
-    { label: "Bold", action: () => insertMarkdown("**", "**"), shortcut: "Ctrl+B" },
-    { label: "Italic", action: () => insertMarkdown("*", "*"), shortcut: "Ctrl+I" },
-    { label: "Code", action: () => insertMarkdown("`", "`"), shortcut: "Ctrl+`" },
-    { label: "Link", action: () => insertMarkdown("[", "](url)"), shortcut: "Ctrl+K" },
-    { label: "Heading", action: () => insertMarkdown("## "), shortcut: "Ctrl+H" },
-    { label: "List", action: () => insertMarkdown("- "), shortcut: "Ctrl+L" },
-  ]
+  // const toolbarButtons = [
+  //   { label: "Bold", action: () => insertMarkdown("**", "**"), shortcut: "Ctrl+B" },
+  //   { label: "Italic", action: () => insertMarkdown("*", "*"), shortcut: "Ctrl+I" },
+  //   { label: "Code", action: () => insertMarkdown("`", "`"), shortcut: "Ctrl+`" },
+  //   { label: "Link", action: () => insertMarkdown("[", "](url)"), shortcut: "Ctrl+K" },
+  //   { label: "Heading", action: () => insertMarkdown("## "), shortcut: "Ctrl+H" },
+  //   { label: "List", action: () => insertMarkdown("- "), shortcut: "Ctrl+L" },
+  // ]
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -124,19 +124,7 @@ export function MarkdownEditor({
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-1">
-          {toolbarButtons.map((button) => (
-            <Button
-              key={button.label}
-              variant="outline"
-              size="sm"
-              onClick={button.action}
-              title={`${button.label} (${button.shortcut})`}
-            >
-              {button.label}
-            </Button>
-          ))}
-        </div>
+
       </CardHeader>
 
       <CardContent>

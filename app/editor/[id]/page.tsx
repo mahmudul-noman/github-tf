@@ -46,12 +46,6 @@ export default function EditorPage() {
     }
   }
 
-  const handlePublish = () => {
-    if (title !== draft?.title || content !== draft?.content) {
-      handleSave()
-    }
-    setPublishDialogOpen(true)
-  }
 
   const handlePublished = () => {
     router.push("/")
@@ -130,10 +124,6 @@ export default function EditorPage() {
               </Link>
             </Button>
 
-            <Button size="sm" onClick={handlePublish}>
-              <Upload className="h-4 w-4 mr-2" />
-              Publish
-            </Button>
           </div>
         </div>
 
@@ -157,14 +147,6 @@ export default function EditorPage() {
           value={content}
           onChange={setContent}
           placeholder="Start writing your post content..."
-        />
-
-        {/* Publish Dialog */}
-        <PublishDialog
-          draft={{ ...draft, title, content }}
-          open={publishDialogOpen}
-          onOpenChange={setPublishDialogOpen}
-          onPublished={handlePublished}
         />
       </div>
     </div>

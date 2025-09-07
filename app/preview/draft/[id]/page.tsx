@@ -75,10 +75,6 @@ export default function DraftPreviewPage() {
               </Link>
             </Button>
 
-            <Button size="sm">
-              <Upload className="h-4 w-4 mr-2" />
-              Publish
-            </Button>
           </div>
         </div>
 
