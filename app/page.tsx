@@ -71,6 +71,8 @@ export default function Dashboard() {
 
       const response = await fetch("/api/github/files");
 
+      // console.log("response", response);
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -100,7 +102,7 @@ export default function Dashboard() {
       }
 
       setPublishedPosts(posts);
-      console.log(`Loaded ${posts.length} published posts`);
+      // console.log(`Loaded ${posts.length} published posts`);
     } catch (error) {
       console.error("Error fetching published posts:", error);
       setPostsError(
@@ -230,198 +232,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* User Manual Modal */}
-        {/* {userManualOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="flex items-center justify-between p-6 border-b">
-                <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                  <BookOpen className="h-6 w-6 text-purple-600" />
-                  User Manual
-                </h2>
-                <Button
-                  variant="ghost"
-                  onClick={() => setUserManualOpen(false)}
-                  className="h-8 w-8 p-0 rounded-full cursor-pointer"
-                >
-                  ×
-                </Button>
-              </div>
-
-              <div className="p-6 space-y-6">
-                <section>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                    Welcome to GitHub CMS
-                  </h3>
-                  <p className="text-gray-600">
-                    This application allows you to create, manage, and publish
-                    Markdown content directly to your GitHub repository. Follow
-                    this guide to make the most of the application.
-                  </p>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                    <FileTextIcon className="h-5 w-5 text-blue-500" />
-                    Getting Started
-                  </h3>
-                  <ol className="list-decimal pl-5 space-y-2 text-gray-600">
-                    <li>
-                      Make sure you've configured your GitHub repository in the
-                      settings
-                    </li>
-                    <li>
-                      Create your first draft using the "New Draft" button
-                    </li>
-                    <li>Edit your content using the Markdown editor</li>
-                    <li>
-                      Publish individual drafts or use "Publish All" for
-                      multiple posts
-                    </li>
-                  </ol>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                    <Edit className="h-5 w-5 text-green-500" />
-                    Creating and Managing Drafts
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>New Draft:</strong> Click the "New Draft" button
-                        to create a new content draft
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>Editing:</strong> Click the "Edit" button on any
-                        draft to modify its content
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>Duplicating:</strong> Use the "Duplicate" button
-                        to create copies of existing drafts
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>Deleting:</strong> Remove drafts individually or
-                        use "Delete All" to clear everything
-                      </span>
-                    </li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                    <Upload className="h-5 w-5 text-orange-500" />
-                    Publishing Content
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>Single Publishing:</strong> Use the "Publish"
-                        button on individual drafts to publish them to GitHub
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>Bulk Publishing:</strong> The "Publish All"
-                        button processes all drafts at once
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>File Names:</strong> Draft titles are converted
-                        to kebab-case for filenames (e.g., "My Post" becomes
-                        "my-post.md")
-                      </span>
-                    </li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                    <GitBranch className="h-5 w-5 text-purple-500" />
-                    Viewing Published Content
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>Published Posts:</strong> View all published
-                        content in the right column
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>GitHub Link:</strong> Click "View on GitHub" to
-                        see the file directly in your repository
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">
-                        <strong>Preview:</strong> Use the "Preview" button to
-                        see how your content will render
-                      </span>
-                    </li>
-                  </ul>
-                </section>
-
-                <section className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <h3 className="text-lg font-semibold mb-2 text-blue-800">
-                    Tips & Best Practices
-                  </h3>
-                  <ul className="list-disc pl-5 space-y-1 text-blue-700">
-                    <li>Use descriptive titles for your drafts</li>
-                    <li>Regularly save your work while editing</li>
-                    <li>Preview content before publishing</li>
-                    <li>
-                      Use the search function to quickly find specific drafts or
-                      posts
-                    </li>
-                    <li>
-                      Check the Published Posts section to verify your content
-                      was successfully pushed to GitHub
-                    </li>
-                  </ul>
-                </section>
-
-                <section className="bg-gray-100 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                    Need Help?
-                  </h3>
-                  <p className="text-gray-600">
-                    If you encounter any issues or have questions about using
-                    this CMS, please check the GitHub repository documentation
-                    or contact support.
-                  </p>
-                </section>
-              </div>
-
-              <div className="flex justify-end p-6 border-t">
-                <Button
-                  onClick={() => setUserManualOpen(false)}
-                  className="bg-purple-600 hover:bg-purple-700 text-white cursor-pointer"
-                >
-                  Got it, thanks!
-                </Button>
-              </div>
-            </div>
-          </div>
-        )} */}
-
+      
         {/* User Manual Modal */}
         {userManualOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
