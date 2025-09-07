@@ -376,17 +376,17 @@ function DraftCard({
             </Link>
           </Button>
 
-          <Button size="sm" variant="outline" onClick={onPublish} className="border-green-300 text-green-700 hover:bg-green-50 cursor-pointer">
+          <Button size="sm" variant="outline" onClick={onPublish} className="border-green-300 text-green-700 hover:bg-green-500 cursor-pointer">
             <Upload className="h-4 w-4 mr-1" />
             Publish
           </Button>
 
-          <Button size="sm" variant="outline" onClick={onDuplicate} className="border-orange-300 text-orange-700 hover:bg-orange-50 cursor-pointer">
+          <Button size="sm" variant="outline" onClick={onDuplicate} className="border-orange-300 text-orange-700 hover:bg-orange-500 cursor-pointer">
             <Copy className="h-4 w-4 mr-1" />
             Duplicate
           </Button>
 
-          <Button size="sm" variant="outline" onClick={onDelete} className="border-red-300 text-red-700 hover:bg-red-50 cursor-pointer">
+          <Button size="sm" variant="outline" onClick={onDelete} className="border-red-300 text-red-700 hover:bg-red-500 cursor-pointer">
             <Trash2 className="h-4 w-4 mr-1" />
             Delete
           </Button>
