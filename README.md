@@ -254,7 +254,7 @@ After publishing, your GitHub repository will contain:
 <br><small>App Router</small>
 </td>
 <td align="center">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="60" height="60"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2560px-Tailwind_CSS_Logo.svg.png" width="60" height="60"/>
 <br><strong>Tailwind CSS</strong>
 <br><small>+ shadcn/ui</small>
 </td>
